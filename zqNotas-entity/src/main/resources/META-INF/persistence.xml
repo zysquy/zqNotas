@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="zqNotas-pu" transaction-type="JTA">
+  
+      <provider>org.hibernate.ejb.HibernatePersistence</provider>
+ 
+      <jta-data-source>java:/ds/zqNotas</jta-data-source>
+      <class>com.zysquy.zqnotas.entity.Acudiente</class>
+      <class>com.zysquy.zqnotas.entity.Asignatura</class>
+      <class>com.zysquy.zqnotas.entity.EstablecimientoEducativo</class>
+      <class>com.zysquy.zqnotas.entity.Estudiante</class>
+      <class>com.zysquy.zqnotas.entity.Evaluacion</class>
+      <class>com.zysquy.zqnotas.entity.Grado</class>
+      <class>com.zysquy.zqnotas.entity.Grupo</class>
+      <class>com.zysquy.zqnotas.entity.LogroAsigEval</class>
+      <class>com.zysquy.zqnotas.entity.LogroAsigEvalItem</class>
+      <class>com.zysquy.zqnotas.entity.LogroAsigEvalItemDet</class>
+      <class>com.zysquy.zqnotas.entity.LogroEvalItem</class>
+      <class>com.zysquy.zqnotas.entity.LogroEvalItemDet</class>
+      <class>com.zysquy.zqnotas.entity.LogroEvaluacion</class>
+      <class>com.zysquy.zqnotas.entity.PeriodoEvaluacion</class>
+      <class>com.zysquy.zqnotas.entity.PeriodoLectivo</class>
+      <class>com.zysquy.zqnotas.entity.Persona</class>
+      <class>com.zysquy.zqnotas.entity.Profesor</class>
+      <class>com.zysquy.zqnotas.entity.TipoAsignatura</class>
+      <class>com.zysquy.zqnotas.entity.TipoDocumento</class>
+      <class>com.zysquy.zqnotas.entity.TipoEspecialidad</class>
+      <class>com.zysquy.zqnotas.entity.TipoGrado</class>
+      <class>com.zysquy.zqnotas.entity.TipoJornada</class>
+      <class>com.zysquy.zqnotas.entity.TipoPeriodo</class>
+
+      <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+      <properties>
+      <!-- Configuración de propiedades de hibernate: http://docs.jboss.org/hibernate/orm/3.3/reference/en/html/session-configuration.html -->      
+        <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+        <property name="hibernate.show_sql" value="true"/>
+        <property name="hibernate.format_sql" value="true"/>
+        <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+        <property name="hibernate.hbm2ddl.auto" value="validate"/>
+        <property name="jboss.entity.manager.factory.jndi.name" value="java:/persistence_unit/zqNotas-pu"/>         
+      </properties>
+      
+      <!-- 
+      <properties>
+      	<property name="hibernate.connection.username" value="znotas"/>
+      	<property name="hibernate.connection.password" value=""/>
+      	<property name="hibernate.connection.url" value="jdbc:postgresql://z-test-bd:5432/zNotas"/>
+      	<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      </properties>
+       -->
+	</persistence-unit>
+</persistence>
