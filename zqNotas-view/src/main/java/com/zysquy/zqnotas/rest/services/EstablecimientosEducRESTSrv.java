@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.zysquy.rest.ZysquyRESTSrv;
+import com.zysquy.zqnotas.controller.EstablecimientoEducativoController;
 import com.zysquy.zqnotas.entity.EstablecimientoEducativo;
-import com.zysquy.zqnotas.view.controller.EstablecimientoEducativoController;
 
 @Controller
 @RequestMapping("/establecimientos")
@@ -26,8 +26,9 @@ public class EstablecimientosEducRESTSrv extends ZysquyRESTSrv {
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody	
-	public EstablecimientoEducativo crear(@RequestBody EstablecimientoEducativo establecimientoEducativo) {
+	public EstablecimientoEducativo crear(@RequestBody EstablecimientoEducativo establecimientoEducativo) {		
 		admEstablecimientosEducController.crearEntidadEducativa(establecimientoEducativo);
+		//throw new RuntimeException("Error al proposito");
 		return establecimientoEducativo;
 	}
 	
