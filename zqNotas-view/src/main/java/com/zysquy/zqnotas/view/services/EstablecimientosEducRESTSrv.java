@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.zysquy.zqnotas.entity.EstablecimientoEducativo;
-import com.zysquy.zqnotas.view.controller.AdmEstablecimientosEduController;
+import com.zysquy.zqnotas.view.controller.EstablecimientoEducativoController;
 
 @Controller
 @RequestMapping("/establecimientos")
 public class EstablecimientosEducRESTSrv {
 	
 	@Autowired
-	private AdmEstablecimientosEduController admEstablecimientosEducController;
+	private EstablecimientoEducativoController admEstablecimientosEducController;
 	
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
