@@ -13,9 +13,6 @@
     <!-- Uncomment and add your base-package here:-->          
   <context:annotation-config></context:annotation-config>	
   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>  
-    
-	
-  
-  <bean id="handlerExceptionsInRESTAspect" class="com.zysquy.rest.HandlerExceptionsInRESTAspect"></bean>
+   
 		
 </beans>
