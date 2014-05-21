@@ -50,6 +50,14 @@
 	</properties>
 	
 	<dependencies>
+  
+          <!-- Aspectj  -->
+        <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
+          <version>1.7.4</version>
+        </dependency>
+        
 		<!-- Spring and Transactions -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -61,6 +69,13 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
+        
+        <!-- Spring aspects -->        
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aspects</artifactId>
+          <version>${spring-framework.version}</version>
+        </dependency>    
     
     <!-- Spring web -->
     
