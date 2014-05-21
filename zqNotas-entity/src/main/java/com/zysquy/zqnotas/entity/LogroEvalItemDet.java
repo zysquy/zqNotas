@@ -20,7 +20,11 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
 
 
 /**
@@ -34,12 +38,14 @@ public class LogroEvalItemDet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="logro_eval_item_det_id_seq")
 	private Integer id;
 
 	private Float nota;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid;
 
 	//bi-directional many-to-one association to LogroAsigEvalItemDet
 	@ManyToOne
@@ -70,11 +76,11 @@ public class LogroEvalItemDet implements Serializable {
 		this.nota = nota;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 

@@ -20,8 +20,22 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 
 /**
@@ -35,13 +49,15 @@ public class PeriodoLectivo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="periodo_lectivo_id_seq")
 	private Integer id;
 
 	@Column(name="numero_periodo")
 	private Short numeroPeriodo;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid;
 
 	//bi-directional many-to-one association to Estudiante
 	@OneToMany(mappedBy="periodoLectivo")
@@ -84,11 +100,11 @@ public class PeriodoLectivo implements Serializable {
 		this.numeroPeriodo = numeroPeriodo;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 

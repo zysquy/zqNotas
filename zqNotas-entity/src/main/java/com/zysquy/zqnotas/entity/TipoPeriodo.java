@@ -20,8 +20,13 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -32,10 +37,16 @@ import java.util.List;
 @Table(name="tipo_periodo")
 @NamedQuery(name="TipoPeriodo.findAll", query="SELECT t FROM TipoPeriodo t")
 public class TipoPeriodo implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6382218200768577064L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="tipo_periodo_id_seq")
 	private Short id;
 
 	private String descripcion;
@@ -44,7 +55,8 @@ public class TipoPeriodo implements Serializable {
 
 	private String nombre;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid;
 
 	//bi-directional many-to-one association to PeriodoLectivo
 	@OneToMany(mappedBy="tipoPeriodo")
@@ -85,11 +97,11 @@ public class TipoPeriodo implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 

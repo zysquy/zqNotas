@@ -20,8 +20,22 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 
 /**
@@ -32,10 +46,15 @@ import java.util.List;
 @Table(name="establecimiento_educativo")
 @NamedQuery(name="EstablecimientoEducativo.findAll", query="SELECT e FROM EstablecimientoEducativo e")
 public class EstablecimientoEducativo implements Serializable {
-	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3786001299657619793L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="establecimiento_educativo_id_seq", sequenceName="establecimiento_educativo_id_seq", allocationSize=1)
+	@GeneratedValue(generator="establecimiento_educativo_id_seq", strategy=GenerationType.SEQUENCE)	
 	private Integer id;
 
 	private Short dv;
@@ -49,7 +68,8 @@ public class EstablecimientoEducativo implements Serializable {
 
 	private String url;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid = UUID.randomUUID();
 
 	//bi-directional many-to-one association to TipoEspecialidad
 	@ManyToOne
@@ -57,7 +77,7 @@ public class EstablecimientoEducativo implements Serializable {
 	private TipoEspecialidad tipoEspecialidad;
 
 	//bi-directional many-to-one association to PeriodoLectivo
-	@OneToMany(mappedBy="establecimientoEducativo")
+	@OneToMany(mappedBy="establecimientoEducativo")	
 	private List<PeriodoLectivo> periodosLectivos;
 
 	public EstablecimientoEducativo() {
@@ -111,11 +131,11 @@ public class EstablecimientoEducativo implements Serializable {
 		this.url = url;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 
@@ -149,4 +169,27 @@ public class EstablecimientoEducativo implements Serializable {
 		return periodosLectivo;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EstablecimientoEducativo [id=");
+		builder.append(id);
+		builder.append(", dv=");
+		builder.append(dv);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", nit=");
+		builder.append(nit);
+		builder.append(", razonSocial=");
+		builder.append(razonSocial);
+		builder.append(", url=");
+		builder.append(url);
+		builder.append(", uuid=");
+		builder.append(uuid);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
+	
 }

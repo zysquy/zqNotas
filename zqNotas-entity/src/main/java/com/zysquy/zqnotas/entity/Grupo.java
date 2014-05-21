@@ -20,7 +20,11 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
 
 
 /**
@@ -33,12 +37,14 @@ public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="grupo_id_seq")
 	private Integer id;
 
 	private String nomenclatura;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid;
 
 	//bi-directional many-to-one association to Grado
 	@ManyToOne
@@ -72,11 +78,11 @@ public class Grupo implements Serializable {
 		this.nomenclatura = nomenclatura;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 

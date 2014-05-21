@@ -20,9 +20,14 @@
 package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -36,7 +41,8 @@ public class PeriodoEvaluacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="periodo_evaluacion_id_seq")
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
@@ -53,7 +59,8 @@ public class PeriodoEvaluacion implements Serializable {
 
 	private Float porcentaje;
 
-	private String uuid;
+	@Type(type="pg-uuid")
+	private UUID uuid;
 
 	//bi-directional many-to-one association to Evaluacion
 	@OneToMany(mappedBy="periodoEvaluacion")
@@ -118,11 +125,11 @@ public class PeriodoEvaluacion implements Serializable {
 		this.porcentaje = porcentaje;
 	}
 
-	public String getUuid() {
-		return this.uuid;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 
