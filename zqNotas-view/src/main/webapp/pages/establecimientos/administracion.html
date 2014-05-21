@@ -1,0 +1,150 @@
+.<!DOCTYPE html>
+<div ng-controller="AdmEstablecimientosEduCtrl" ng-init="init()">
+
+  <section id="widget-grid" class="">
+    <div class="row">
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget Form Establecimiento Educativo-->
+        <div class="jarviswidget" id="wid-id-form-establecimientos-educativos" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+            <h2>Formulario inscripción de establecimiento educativo</h2>
+          </header>
+
+          <div>
+            <div class="jarviswidget-editbox">
+            </div>
+
+            <div class="widget-body no-padding">
+
+                <form id="establecimiento-educativo-form" class="smart-form"  name="formEstEdu" novalidate="novalidate">
+
+                  <fieldset>
+					  <div class="row">
+	                      <section class="col col-6">
+	                        <label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.razonSocial'].$invalid}">
+	                          <i class="icon-append fa fa-user"></i>
+	                          <input type="text" name="establecimientoEducativo.razonSocial" placeholder="Razón Social" ng-model="establecimientoEducativo.razonSocial" 
+	                          	required="true"/>
+	                          <b class="tooltip tooltip-top-right">Ingrese el nombre del establecimiento educativo</b>
+	                        </label>
+	                        <em class="invalid" ng-show="formEstEdu['establecimientoEducativo.razonSocial'].$error.required">Es necesario ingresar información en este campo.</em>
+	                      </section>
+	                      <section class="col col-4">
+	                        <label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.nit'].$invalid}">
+	                          <i class="icon-append fa fa-user"></i>
+	                          <input type="text" name="establecimientoEducativo.nit" placeholder="NIT" ng-model="establecimientoEducativo.nit" required="required"/>
+	                          <b class="tooltip tooltip-top-right">Ingrese el NIT. No inserte puntos, ni guiones</b>
+	                        </label>
+						</section>
+						<section class="col col-2">
+							<label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.dv'].$invalid}">
+	                          <i class="icon-append fa fa-user"></i>
+	                          <input type="number" name="establecimientoEducativo.dv" placeholder="DV" ng-model="establecimientoEducativo.dv" 
+	                          	required="required" ng-maxlength="1" ng-minlength="1" min="0" max="9"/>
+	                          <b class="tooltip tooltip-top-right">Ingrese el dígito de verificación del NIT. Inserte solo un número</b>
+	                        </label>                        
+	                    </section>
+                    </div>
+                    <div class="row">
+						<section class="col col-6">
+	                        <label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.email'].$invalid}">
+	                          <i class="icon-prepend fa fa-user"></i>
+	                          <input type="email" name="establecimientoEducativo.email" placeholder="Email" ng-model="establecimientoEducativo.email" required="required">
+	                          <b class="tooltip tooltip-top-right">Ingrese el correo electronico del colegio</b>
+	                        </label>
+	                    </section>          
+						<section class="col col-6">
+	                        <label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.url'].$invalid}">
+	                          <i class="icon-prepend fa fa-user"></i>
+	                          <input type="url" name="establecimientoEducativo.url" placeholder="Sitio web" ng-model="establecimientoEducativo.url">
+	                          <b class="tooltip tooltip-top-right">Ingrese la dirección del sitio web oficial del colegio</b>
+	                        </label>
+	                    </section>                                  
+                    </div>
+                  </fieldset>
+
+                  <footer>
+                    <button type="submit" class="btn btn-primary" ng-click="guardar(establecimientoEducativo)"  ng-disabled="formEstEdu.$invalid">
+                      Guardar
+                    </button>
+                  </footer>
+
+                </form>
+            </div>          
+        	</div>
+        	</div>
+		</article>		
+		<article class="col-sm-12 col-md-12 col-lg-6">
+        <!-- Widget Tabla Establecimiento Educativo-->
+	        <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+	          <header>
+	            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+	            <h2>Lista de establecimientos educativos</h2>
+	          </header>
+	
+	          <div>
+	            <div class="jarviswidget-editbox">
+	            </div>
+	
+	            <div class="widget-body no-padding">
+	              <div class="widget-body-toolbar">	              	
+	              </div>				
+					<div class="dt-top-row">
+	              		<div id="dt_basic_length" class="dataTables_length">
+	              			<span class="smart-form">
+	              				<label class="select" style="width:60px">
+	              					<select size="1" name="dt_basic_length" aria-controls="dt_basic">
+	              						<option value="10" selected="selected">10</option>
+	              						<option value="25">25</option>
+	              						<option value="50">50</option>
+	              						<option value="100">100</option>
+              						</select>
+              						<i></i>
+           						</label>
+       						</span>
+   						</div>
+   						<div class="dataTables_filter" id="dt_basic_filter">
+   							<div class="input-group">
+   								<span class="input-group-addon">
+   									<i class="fa fa-search"></i>
+								</span>
+								<input class="form-control" placeholder="Filter" type="text" aria-controls="dt_basic">
+							</div>
+						</div>
+					</div>	              
+	              <table  id="dt_est_edu" class="table table-striped table-bordered table-hover" ng-table="dtEstEduParams"  template-pagination="custom/pager">
+	                  <tr ng-repeat="ea in $data">
+	                    <td data-title="'ID'">{{ea.id}}</td>
+	                    <td data-title="'Razón Social'">{{ea.razonSocial}}</td>
+	                    <td data-title="'NIT'">{{ea.nit}}</td>
+	                    <td data-title="'DV'">{{ea.dv}}</td>
+	                    <td data-title="'Email'">{{ea.email}}</td>
+	                  </tr>              
+	              </table>
+<script type="text/ng-template" id="custom/pager">
+        <ul class="pager ng-cloak">
+          <li ng-repeat="page in pages"
+                ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+            <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+            <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+          </li>
+            <li> 
+            <div class="btn-group">
+                <button type="button" ng-class="{'active':params.count() == 2}" ng-click="params.count(2)" class="btn btn-default">2</button>
+                <button type="button" ng-class="{'active':params.count() == 4}" ng-click="params.count(4)" class="btn btn-default">4</button>
+                <button type="button" ng-class="{'active':params.count() == 6}" ng-click="params.count(6)" class="btn btn-default">6</button>
+                <button type="button" ng-class="{'active':params.count() == 8}" ng-click="params.count(8)" class="btn btn-default">8</button>
+            </div>
+            </li>
+        </ul>
+    </script>	  	              
+	            </div>
+	          </div>
+	        </div>
+      </article>		
+    </div>
+  </section>
+</div>
