@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:security="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   
+  <security:http pattern="/login.html*" security="none"></security:http>
+  <security:http pattern="/resources/css/**" security="none"></security:http>
+  <security:http pattern="/resources/fonts/**" security="none"></security:http>
+  <security:http pattern="/resources/img/**" security="none"></security:http>
+  <security:http pattern="/resources/languages/**" security="none"></security:http>
+  <security:http pattern="/resources/libs-js-thirdparty/**" security="none"></security:http>    
+  <security:http pattern="/application/administracion/**" security="none"></security:http>
+  <security:http pattern="/application/seguridad/**" security="none"></security:http>
+  <security:http pattern="/application/general/**" security="none"></security:http>
+  <security:http pattern="/application/**" security="none"></security:http>
+  
+
+  <security:http  auto-config="true" authentication-manager-ref="authenticationManager" >  
+    
+    <security:intercept-url pattern="/pages/establecimientos/**" access="ROLE_ADM_ESTABLECIMIENTOS"/>
+    <security:intercept-url pattern="/establecimientos/**"  access="ROLE_ADM_ESTABLECIMIENTOS"/>
+    <security:intercept-url pattern="/**" access="ROLE_USER"/> 
+    
+    <security:form-login login-page="/login.html"  authentication-failure-url="/login.html?error=true"  password-parameter="password" username-parameter="username"  
+      authentication-success-handler-ref="zysquyAuthenticationSuccessHandler" authentication-failure-handler-ref="zysquyAuthenticationFailureHandler"/>    
+    
+    <security:logout delete-cookies="JSESSIONID"/>
+  
+  </security:http>
+
+  <security:authentication-manager id="authenticationManager">
+    <security:authentication-provider>
+      <security:user-service>
+        <security:user name="ndochoa"  password="123" authorities="ROLE_USER, ROLE_ADM_ESTABLECIMIENTOS"/>
+        <security:user name="user"  password="user" authorities="ROLE_USER"/>
+      </security:user-service>      
+    </security:authentication-provider>
+  </security:authentication-manager>
+
+  
+  
+  <bean id="zysquyAuthenticationSuccessHandler" class="com.zysquy.security.view.ZysquyAuthenticationSuccessHandler">
+    <property name="targetUrl" value="/app"></property>
+  </bean>
+  
+  <bean id="zysquyAuthenticationFailureHandler" class="com.zysquy.security.view.ZysquyAuthenticationFailureHandler"></bean>
+</beans>
+
