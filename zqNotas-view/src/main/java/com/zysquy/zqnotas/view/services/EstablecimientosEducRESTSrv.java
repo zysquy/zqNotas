@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.zysquy.rest.ZysquyRESTSrv;
 import com.zysquy.zqnotas.entity.EstablecimientoEducativo;
 import com.zysquy.zqnotas.view.controller.EstablecimientoEducativoController;
 
 @Controller
 @RequestMapping("/establecimientos")
-public class EstablecimientosEducRESTSrv {
+public class EstablecimientosEducRESTSrv extends ZysquyRESTSrv {
 	
 	@Autowired
 	private EstablecimientoEducativoController admEstablecimientosEducController;
