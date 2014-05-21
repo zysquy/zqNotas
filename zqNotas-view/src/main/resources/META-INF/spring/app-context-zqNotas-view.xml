@@ -10,12 +10,12 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <!-- Uncomment and add your base-package here:-->        
-    <context:annotation-config></context:annotation-config>
+    <!-- Uncomment and add your base-package here:-->          
+  <context:annotation-config></context:annotation-config>	
+  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>  
+    
 	
-    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>  
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	<tx:jta-transaction-manager ></tx:jta-transaction-manager>
+  
+  <bean id="handlerExceptionsInRESTAspect" class="com.zysquy.rest.HandlerExceptionsInRESTAspect"></bean>
 		
 </beans>
