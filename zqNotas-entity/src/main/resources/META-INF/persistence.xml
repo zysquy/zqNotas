@@ -5,9 +5,10 @@
       <provider>org.hibernate.ejb.HibernatePersistence</provider>
  
       <jta-data-source>java:/ds/zqNotas</jta-data-source>
+      
       <class>com.zysquy.zqnotas.entity.Acudiente</class>
       <class>com.zysquy.zqnotas.entity.Asignatura</class>
-      <class>com.zysquy.zqnotas.entity.EstablecimientoEducativo</class>
+      <class>com.zysquy.zqnotas.entity.EstablecimientoEducativo</class>      
       <class>com.zysquy.zqnotas.entity.Estudiante</class>
       <class>com.zysquy.zqnotas.entity.Evaluacion</class>
       <class>com.zysquy.zqnotas.entity.Grado</class>
@@ -28,7 +29,7 @@
       <class>com.zysquy.zqnotas.entity.TipoGrado</class>
       <class>com.zysquy.zqnotas.entity.TipoJornada</class>
       <class>com.zysquy.zqnotas.entity.TipoPeriodo</class>
-
+ 
       <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
       <properties>
@@ -37,7 +38,6 @@
         <property name="hibernate.show_sql" value="true"/>
         <property name="hibernate.format_sql" value="true"/>
         <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
-        <property name="hibernate.hbm2ddl.auto" value="validate"/>
         <property name="jboss.entity.manager.factory.jndi.name" value="java:/persistence_unit/zqNotas-pu"/>         
       </properties>
       
