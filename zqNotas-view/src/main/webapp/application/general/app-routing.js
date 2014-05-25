@@ -25,6 +25,12 @@ zqNotasApp.config(
       $routeProvider.when('/establecimientos/administracion', {
         templateUrl: 'pages/establecimientos/administracion.html'
       });
+      $routeProvider.when('/error500', {
+        templateUrl: 'pages/error/error500.html'
+      });
+      $routeProvider.when('/error404', {
+          templateUrl: 'pages/error/error404.html'
+        });      
    }
   ]
 );
