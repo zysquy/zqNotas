@@ -69,6 +69,33 @@ zqNotasApp.config(function($translateProvider){
 */
 });
 
+/**
+ * Config interceptor for http
+ */
+zqNotasApp.config(function($provide, $httpProvider) {
+
+  $provide.factory('zqHttpInterceptor',
+    function($q, $location) {
+      return {
+    	  
+        responseError: function(rejection) {          
+          if( rejection !== undefined && rejection.hasOwnProperty('status')) {
+            if( rejection.status == 500 ) {
+              $location.path('/error500');
+            }
+            if(rejection.status == 400) {
+            	$location.path('/error404');
+            }
+          }
+          return $q.reject(rejection);
+        }
+      
+      };
+    });
+
+  $httpProvider.interceptors.push('zqHttpInterceptor');
+});
+
 
 
  
