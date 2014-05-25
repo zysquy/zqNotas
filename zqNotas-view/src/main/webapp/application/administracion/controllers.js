@@ -26,24 +26,40 @@ modAdministracionControllers.controller('AdmEstablecimientosEduCtrl',
   [ '$scope', '$http', '$resource', 'ngTableParams',
     function($scope, $http, $resource, ngTableParams) {
 
+      var EstablecimientoEducativoResource = $resource('api/establecimientos/:id', {id:'@id'});
+
       $scope.init = function() {
         $scope.getList();
       };
 
       $scope.guardar = function(establecimientoEducativo) {
+        var eu = new EstablecimientoEducativoResource();
+        angular.copy(establecimientoEducativo, eu);
+        eu.$save();
+        EstablecimientoEducativoResource.get({id:1});
+        //$scope.loadDTParams();
+        /*
         $http.post('establecimientos/add', establecimientoEducativo).success( function(data, status, headers, config) {
           console.log('Success send establecimientos/add', data);
           console.log('Success send establecimientos/add', status);
         });
+        */
       };
 
       $scope.getList = function() {
+    	  var establecimientos = EstablecimientoEducativoResource.get( function() {
+    		  $scope.listEstablecimientosEdu = establecimientos.data;
+    		  $scope.loadDTParams();
+    	  });
+    	  
+    	  /*
         $http.post('establecimientos/list').success( function(data, status, headers, config) {
           $scope.listEstablecimientosEdu = data;
           $scope.loadDTParams();
         }).error( function(data, status, headers, config) {
           console.log('Error on invoke',data);
         });
+        */
       };
       
       $scope.loadDTParams = function() {    	  
