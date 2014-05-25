@@ -5,7 +5,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
    
-  <security:http pattern="/login.html*" security="none"></security:http>
+   
+  <security:http pattern="/login.html*" security="none"></security:http>  
   <security:http pattern="/resources/css/**" security="none"></security:http>
   <security:http pattern="/resources/fonts/**" security="none"></security:http>
   <security:http pattern="/resources/img/**" security="none"></security:http>
@@ -18,11 +19,11 @@
   
 
   <security:http  auto-config="true" authentication-manager-ref="authenticationManager" >  
-    
+    <!-- 
     <security:intercept-url pattern="/pages/establecimientos/**" access="ROLE_ADM_ESTABLECIMIENTOS"/>
-    <security:intercept-url pattern="/establecimientos/**"  access="ROLE_ADM_ESTABLECIMIENTOS"/>
+    <security:intercept-url pattern="/api/establecimientos/**"  access="ROLE_ADM_ESTABLECIMIENTOS"/>
     <security:intercept-url pattern="/**" access="ROLE_USER"/> 
-    
+     -->
     <security:form-login login-page="/login.html"  authentication-failure-url="/login.html?error=true"  password-parameter="password" username-parameter="username"  
       authentication-success-handler-ref="zysquyAuthenticationSuccessHandler" authentication-failure-handler-ref="zysquyAuthenticationFailureHandler"/>    
     
