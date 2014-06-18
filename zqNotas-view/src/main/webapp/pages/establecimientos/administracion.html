@@ -31,7 +31,7 @@
 	                        </label>
 	                        <em class="invalid" ng-show="formEstEdu['establecimientoEducativo.razonSocial'].$error.required">Es necesario ingresar información en este campo.</em>
 	                      </section>
-	                      <section class="col col-4">
+	                      <section class="col col-3">
 	                        <label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.nit'].$invalid}">
 	                          <i class="icon-append fa fa-user"></i>
 	                          <input type="text" name="establecimientoEducativo.nit" placeholder="NIT" ng-model="establecimientoEducativo.nit" required="required"/>
@@ -40,7 +40,6 @@
 						</section>
 						<section class="col col-2">
 							<label class="input" ng-class="{'state-error':formEstEdu['establecimientoEducativo.dv'].$invalid}">
-	                          <i class="icon-append fa fa-user"></i>
 	                          <input type="number" name="establecimientoEducativo.dv" placeholder="DV" ng-model="establecimientoEducativo.dv" 
 	                          	required="required" ng-maxlength="1" ng-minlength="1" min="0" max="9"/>
 	                          <b class="tooltip tooltip-top-right">Ingrese el dígito de verificación del NIT. Inserte solo un número</b>
