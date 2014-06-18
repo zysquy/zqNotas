@@ -13,7 +13,15 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<tx:jta-transaction-manager ></tx:jta-transaction-manager>
-	
+
+   <bean id="parametroAdministracion" class="com.zysquy.zqnotas.logic.parametros.ParametroAdministracionImpl">
+    <property name="repositorios">
+      <map>
+        <entry key="com.zysquy.zqnotas.entity.TipoEspecialidad" value-ref="tipoEspecialidadRepository"></entry>
+      </map>
+    </property>
+   </bean>
+   	
 <!-- 	
 	<bean id="managerEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >  
 	    <property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml"></property>
