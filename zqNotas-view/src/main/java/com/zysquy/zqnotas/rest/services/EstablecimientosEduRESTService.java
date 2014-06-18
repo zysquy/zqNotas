@@ -1,5 +1,6 @@
 package com.zysquy.zqnotas.rest.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import com.zysquy.rest.ZysquyRESTSrv;
 import com.zysquy.view.message.annotations.MessageRESTInterceptor;
 import com.zysquy.zqnotas.controller.EstablecimientoEducativoController;
 import com.zysquy.zqnotas.entity.EstablecimientoEducativo;
+import com.zysquy.zqnotas.entity.PeriodoLectivo;
 
 @Controller
 @RequestMapping("/api/establecimientos")
@@ -64,7 +66,9 @@ public class EstablecimientosEduRESTService extends ZysquyRESTSrv {
 		List<EstablecimientoEducativo> establecimientos = this.admEstablecimientosEducController.recuperarEstablecimientosEducativos(null,null);
 		if(establecimientos != null) {
 			for (EstablecimientoEducativo ee : establecimientos) {
-				ee.setPeriodosLectivos(null);
+			  if( ee.getPeriodosLectivos() != null ) {
+			    ee.setPeriodosLectivos( new ArrayList<PeriodoLectivo>(ee.getPeriodosLectivos()) );
+			  }
 			}
 		}
 		//throw new RuntimeException("Error al proposito");
