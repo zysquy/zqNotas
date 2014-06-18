@@ -15,8 +15,5 @@
   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>  
     
   <context:component-scan base-package="com.zysquy.faulttolerance"></context:component-scan>
-  
-
-   
 		
 </beans>
