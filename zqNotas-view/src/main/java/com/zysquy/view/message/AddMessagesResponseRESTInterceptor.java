@@ -1,7 +1,5 @@
 package com.zysquy.view.message;
 
-import java.util.ArrayList;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,17 +18,10 @@ public class AddMessagesResponseRESTInterceptor {
          
       Object response = pjp.proceed();
       
-      if( response instanceof ResponseREST ) {
-        MessageResponse messageResponse = new MessageResponse();             
-        
+      if( response instanceof ResponseREST ) {       
         if( messagesModel != null && messagesModel.getMessages() != null ) {
-          if(messageResponse.getMessages() == null) {
-            messageResponse.setMessages(new ArrayList<Message>( messagesModel.getMessages() ));
-          } else {
-            messageResponse.getMessages().addAll(messagesModel.getMessages());
-          }
-        }
-        ((ResponseREST) response).setMessages(messageResponse);
+          ((ResponseREST) response).setMessages(messagesModel.getMessages() );  
+        }        
       }          
       
             
