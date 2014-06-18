@@ -1,10 +1,12 @@
 package com.zysquy.rest;
 
-import com.zysquy.view.message.MessageResponse;
+import java.util.List;
+
+import com.zysquy.view.message.Message;
 
 public class ResponseREST {
   
-  private MessageResponse messages;
+  private List<Message> messages;
   
   private Object data;
 
@@ -18,11 +20,11 @@ public class ResponseREST {
 
 
 
-  public MessageResponse getMessages() {
+  public List<Message> getMessages() {
     return messages;
   }
 
-  public void setMessages(MessageResponse messages) {
+  public void setMessages(List<Message> messages) {
     this.messages = messages;
   }
 
