@@ -21,12 +21,9 @@ package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-
-import java.util.List;
-import java.util.UUID;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -36,90 +33,8 @@ import java.util.UUID;
 @Entity
 @Table(name="tipo_jornada")
 @NamedQuery(name="TipoJornada.findAll", query="SELECT t FROM TipoJornada t")
-public class TipoJornada implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class TipoJornada extends Parametro implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="tipo_jornada_id_seq")
-	private Short id;
-
-	private String descripcion;
-
-	private String estado;
-
-	private String nombre;
-
-	@Type(type="pg-uuid")
-	private UUID uuid;
-
-	//bi-directional many-to-one association to Grupo
-	@OneToMany(mappedBy="tipoJornada")
-	private List<Grupo> grupos;
-
-	public TipoJornada() {
-	}
-
-	public Short getId() {
-		return this.id;
-	}
-
-	public void setId(Short id) {
-		this.id = id;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
-	public List<Grupo> getGrupos() {
-		return this.grupos;
-	}
-
-	public void setGrupos(List<Grupo> grupos) {
-		this.grupos = grupos;
-	}
-
-	public Grupo addGrupo(Grupo grupo) {
-		getGrupos().add(grupo);
-		grupo.setTipoJornada(this);
-
-		return grupo;
-	}
-
-	public Grupo removeGrupo(Grupo grupo) {
-		getGrupos().remove(grupo);
-		grupo.setTipoJornada(null);
-
-		return grupo;
-	}
+  private static final long serialVersionUID = 1L;
 
 }

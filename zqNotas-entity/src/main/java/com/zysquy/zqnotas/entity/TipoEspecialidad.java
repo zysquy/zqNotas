@@ -21,12 +21,8 @@ package com.zysquy.zqnotas.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-
-import java.util.List;
-import java.util.UUID;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 /**
@@ -35,91 +31,11 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="tipo_especialidad")
-@NamedQuery(name="TipoEspecialidad.findAll", query="SELECT t FROM TipoEspecialidad t")
-public class TipoEspecialidad implements Serializable {
+public class TipoEspecialidad extends Parametro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="tipo_especialidad_id_seq")
-	private Short id;
-
-	private String descripcion;
-
-	private String estado;
-
-	private String nombre;
-
-	@Type(type="pg-uuid")
-	private UUID uuid;
-
-	//bi-directional many-to-one association to EstablecimientoEducativo
-	@OneToMany(mappedBy="tipoEspecialidad")
-	private List<EstablecimientoEducativo> establecimientosEducativos;
 
 	public TipoEspecialidad() {
-	}
-
-	public Short getId() {
-		return this.id;
-	}
-
-	public void setId(Short id) {
-		this.id = id;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
-	public List<EstablecimientoEducativo> getEstablecimientosEducativos() {
-		return this.establecimientosEducativos;
-	}
-
-	public void setEstablecimientosEducativos(List<EstablecimientoEducativo> establecimientosEducativos) {
-		this.establecimientosEducativos = establecimientosEducativos;
-	}
-
-	public EstablecimientoEducativo addEstablecimientosEducativo(EstablecimientoEducativo establecimientosEducativo) {
-		getEstablecimientosEducativos().add(establecimientosEducativo);
-		establecimientosEducativo.setTipoEspecialidad(this);
-
-		return establecimientosEducativo;
-	}
-
-	public EstablecimientoEducativo removeEstablecimientosEducativo(EstablecimientoEducativo establecimientosEducativo) {
-		getEstablecimientosEducativos().remove(establecimientosEducativo);
-		establecimientosEducativo.setTipoEspecialidad(null);
-
-		return establecimientosEducativo;
 	}
 
 }
