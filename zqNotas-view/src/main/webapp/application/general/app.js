@@ -77,7 +77,24 @@ zqNotasApp.config(function($provide, $httpProvider) {
   $provide.factory('zqHttpInterceptor',
     function($q, $location) {
       return {
-    	  
+          
+        response: function(response) {
+          
+          if( response.hasOwnProperty('data') &&  response.data.hasOwnProperty('messages')) {
+            angular.forEach(response.data.messages, function(message, index){
+              $.bigBox({
+                title:'Mensaje',
+                content: message.keyMessage,
+                color : "#739E73",
+                icon: "fa fa-check",
+                timeout: 3000,
+                number: index
+              });
+            });
+          }
+          
+          return response;
+        },
         responseError: function(rejection) {          
           if( rejection !== undefined && rejection.hasOwnProperty('status')) {
             if( rejection.status == 500 ) {
